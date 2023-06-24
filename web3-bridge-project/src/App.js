@@ -8,16 +8,18 @@ const tiers = [
 ];
 
 const App = () => {
-  const [students, setStudents] = useState(Array(12).fill(null));
+  const [students, setStudents] = useState([]);
   const [totalSavings, setTotalSavings] = useState(0);
   const [savingsByMember, setSavingsByMember] = useState([]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
     if (students.length >= 12) {
       alert('Maximum number of students reached!');
       return;
     }
+
     const name = e.target.name.value;
     const tier = parseInt(e.target.tier.value);
     const amount = parseInt(e.target.amount.value);
@@ -51,7 +53,7 @@ const App = () => {
 
   return (
     <div className="App">
-      <h1>Savings Group</h1>
+      <h1>Students Savings</h1>
       <form onSubmit={handleSubmit}>
         <label htmlFor="name">Name:</label>
         <input type="text" id="name" required />
@@ -63,7 +65,7 @@ const App = () => {
             </option>
           ))}
         </select>
-        <label htmlFor="amount">Amount:</label>
+        <label htmlFor="amount">Amount (₦):</label>
         <input type="number" id="amount" required min="0" />
         <button type="submit" disabled={students.length >= 12}>
           Join
@@ -79,7 +81,7 @@ const App = () => {
               <th>Tier</th>
               <th>Amount (₦)</th>
               <th>Interest (₦)</th>
-              <th>Total Withdrawal(₦)</th>
+              <th>Total Withdrawal (₦)</th>
               <th>Actions</th>
             </tr>
           </thead>
@@ -110,7 +112,7 @@ const App = () => {
       </div>
 
       <div className="total-savings">
-        <h2>Total Savings by Student</h2>
+        <h2>Total Savings by Student (₦)</h2>
         <table>
           <thead>
             <tr>
